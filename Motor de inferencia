@@ -1,0 +1,64 @@
+# =================================================================
+# SISTEMA EXPERTO DE DIAGNOSTICO AUTOMOTRIZ - MOTOR DE INFERENCIA
+# =================================================================
+
+class SistemaExpertoAutomotriz:
+    def __init__(self):
+        # Base de Hechos inicializada por el usuario
+        self.sintomas = {
+            "el_motor_tiembla": False,
+            "humo_negro_escape": False,
+            "chirrido_al_frenar": False
+        }
+
+    def registrar_sintomas(self, sintomas_usuario):
+        for sintoma in sintomas_usuario:
+            if sintoma in self.sintomas:
+                self.sintomas[sintoma] = True
+
+    def diagnosticar(self):
+        print("\n[Ejecutando Motor de Inferencia...]")
+        diagnosticos = []
+
+        # REGLA 1: SI el motor tiembla Y hay humo negro -> ENTONCES la causa son las Bujías
+        if self.sintomas["el_motor_tiembla"] and self.sintomas["humo_negro_escape"]:
+            diagnosticos.append({
+                "componente": "Bujias",
+                "accion": "Reemplazar o limpiar bujias desgastadas inmediatamente.",
+                "confianza": "95%"
+            })
+
+        # REGLA 2: SI el motor tiembla pero NO hay humo negro -> ENTONCES evaluar la Bomba de Gasolina
+        elif self.sintomas["el_motor_tiembla"] and not self.sintomas["humo_negro_escape"]:
+            diagnosticos.append({
+                "componente": "Bomba de Gasolina",
+                "accion": "Verificar la presion del riel de combustible y estado de la bomba.",
+                "confianza": "80%"
+            })
+
+        # REGLA 3: SI hay chirrido al frenar -> ENTONCES la causa son las Pastillas de Freno
+        if self.sintomas["chirrido_al_frenar"]:
+            diagnosticos.append({
+                "componente": "Pastillas de Freno",
+                "accion": "Cambiar balatas delanteras/traseras antes de dañar los discos.",
+                "confianza": "100%"
+            })
+
+        return diagnosticos
+
+# --- SIMULACION DE CASO DE PRUEBA ---
+if __name__ == "__main__":
+    motor = SistemaExpertoAutomotriz()
+    
+    # Simulamos que el usuario reporta que su auto vibra y saca humo oscuro
+    print("Entrada del Usuario: El motor tiembla y sale humo negro.")
+    motor.registrar_sintomas(["el_motor_tiembla", "humo_negro_escape"])
+    
+    # El motor procesa las reglas logicas
+    resultados = motor.diagnosticar()
+    
+    # Imprimir diagnosticos arrojados por el Sistema Experto
+    print("\n================ RESULTADOS DEL DIAGNOSTICO ================")
+    for res in resultados:
+        print(f"** Componente Sospechoso: {res['componente']} ({res['confianza']} de certeza)")
+        print(f"   Acción Recomendada: {res['accion']}")
