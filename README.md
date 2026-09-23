@@ -17,5 +17,7 @@ Cuando un usuario interactúa con la **Vista de Gráfico (Graph View)** de Obsid
 * **Encadenamiento hacia adelante:** Al seleccionar un componente (Causa), las aristas iluminan inmediatamente los síntomas que va a provocar en el vehículo.
 * **Encadenamiento hacia atrás:** Al observar un síntoma (Efecto), el gráfico revela visualmente cuáles son los componentes sospechosos que intersectan ese nodo, permitiendo el diagnóstico.
 
+<img width="1565" height="920" alt="image" src="https://github.com/user-attachments/assets/5a1b9734-807c-4977-8652-e7bacf5daaac" />
+
 
 ##### Nombre: Sofia Galilea Morales Bejarano. Reg: 22310226
